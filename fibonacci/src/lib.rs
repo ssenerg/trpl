@@ -1,43 +1,31 @@
 use std::collections::HashMap;
-use std::time::Instant;
+use std::time::{Instant, Duration};
 
 pub enum FibCalculator {
     NonRecursice,
     RecursiveOS,
     RecursiveBC,
+    RecursiveSimple,
 }
 
-pub fn benchmark(n: u32, calculator: FibCalculator, f: fn(u32, FibCalculator) -> u128) {
+pub fn benchmark(n: u32, calculator: FibCalculator, bc: u32) -> Duration {
+    let mut bc_ = bc;
+    if bc == 0 {
+        bc_ = 1;
+    }
     let now = Instant::now();
-    _ = f(n, calculator);
-    println!("elapsed: {:?}\n", now.elapsed());
+    for _ in 0..=(bc_ - 1) {
+        _ = fibonacci(n, &calculator);
+    }
+    now.elapsed().div_f64(bc_ as f64)
 }
 
-pub fn fibonacci_print(n: u32, calculator: FibCalculator) -> u128 {
-    let mode: &str;
-    let val = match calculator {
-        FibCalculator::NonRecursice => {
-            mode = "non-recursive";
-            fibonacci_non_recursive(n)
-        }
-        FibCalculator::RecursiveOS => {
-            mode = "recursive-ownership";
-            fibonacci_recursive(n)
-        }
-        FibCalculator::RecursiveBC => {
-            mode = "recursive-borrow-checker";
-            fibonacci_recursive_bc(n)
-        }
-    };
-    println!("The {n}-th fibonacci ({mode}) number is: {val}");
-    val
-}
-
-pub fn fibonacci(n: u32, calculator: FibCalculator) -> u128 {
+pub fn fibonacci(n: u32, calculator: &FibCalculator) -> u128 {
     match calculator {
         FibCalculator::NonRecursice => fibonacci_non_recursive(n),
         FibCalculator::RecursiveOS => fibonacci_recursive(n),
         FibCalculator::RecursiveBC => fibonacci_recursive_bc(n),
+        FibCalculator::RecursiveSimple => fibonacci_recursive_simple(n),
     }
 }
 
@@ -59,6 +47,11 @@ fn fibonacci_recursive(n: u32) -> u128 {
 fn fibonacci_recursive_bc(n: u32) -> u128 {
     let mut store = HashMap::with_capacity(n.try_into().unwrap());
     return fibonacci_recursive_bc_(n, &mut store);
+}
+
+fn fibonacci_recursive_simple(n: u32) -> u128 {
+    let (n_2, n_1) = fibonacci_recursive_simple_(n);
+    n_2 + n_1
 }
 
 fn fibonacci_recursive_(n: u32, mut store: HashMap<u32, u128>) -> (u128, HashMap<u32, u128>) {
@@ -107,4 +100,12 @@ fn fibonacci_recursive_bc_(n: u32, store: &mut HashMap<u32, u128>) -> u128 {
     let sum = n_1 + n_2;
     store.insert(n, sum);
     return sum;
+}
+
+fn fibonacci_recursive_simple_(n: u32) -> (u128, u128) {
+    if n == 0 || n == 1 {
+        return (0, 1);
+    }
+    let (n_3, n_2) = fibonacci_recursive_simple_(n - 1);
+    return (n_2, n_3 + n_2);
 }
