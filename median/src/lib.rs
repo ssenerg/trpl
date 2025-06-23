@@ -6,6 +6,7 @@ where
 {
     v: Vec<T>,
 }
+
 impl<T> Debug for SortedVec<T>
 where
     T: PartialOrd + PartialEq + Display + Debug,
