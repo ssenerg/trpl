@@ -1,6 +1,6 @@
 // Note that Summary is used once; its because we have to import traits too
 use _010_generics_traits_lifetimes::{
-    longest, notify2, ImportantExcerpt, NewsArticle, Pair, Summary, Tweet,
+    longest, notify2, FirstWord, ImportantExcerpt, NewsArticle, Pair, Summary, Tweet,
 };
 
 fn main() {
@@ -38,6 +38,11 @@ fn main() {
     let _i = ImportantExcerpt {
         part: first_sentence,
     };
+
+    println!(
+        "first word of Kaftar is {}.\n",
+        FirstWord::from_string("Kaftar").first()
+    );
 
     let integer = Point::new(1, 2);
     let float = Point::new(3.0, 4.0);

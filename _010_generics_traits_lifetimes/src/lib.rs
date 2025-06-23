@@ -113,3 +113,18 @@ pub fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
 pub struct ImportantExcerpt<'a> {
     pub part: &'a str,
 }
+
+pub struct FirstWord<'a> {
+    first: &'a str,
+}
+
+impl<'a> FirstWord<'a> {
+    pub fn from_string(s: &'a str) -> Self {
+        let a = s.split(' ').next().unwrap_or(s);
+        Self { first: a }
+    }
+
+    pub fn first(&self) -> &str {
+        return self.first;
+    }
+}
