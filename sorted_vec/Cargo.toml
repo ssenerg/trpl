@@ -1,5 +1,5 @@
 [package]
-name = "median"
+name = "sorted_vec"
 version = "0.1.0"
 edition = "2021"
 

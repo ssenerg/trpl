@@ -1,4 +1,4 @@
-use median::SortedVec;
+use sorted_vec::SortedVec;
 
 fn main() {
     let inp: Vec<f64> = vec![
@@ -19,5 +19,3 @@ fn main() {
         _ => panic!("won't happen"),
     }
 }
-//           |
-// [4.0, 4.5 , 8.0, 9.0]
