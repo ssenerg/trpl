@@ -1,60 +1,57 @@
-pub fn median(v: &Vec<i32>) -> I32Median {
-    let mut sv = SortedI32Slice::new();
-    for i in v {
-        sv.push(*i);
-    }
-    sv.median()
-}
+use std::fmt::{Debug, Display};
 
-pub enum I32Median {
-    I32(i32),
-    F64(f64),
-    None,
+pub struct SortedVec<T>
+where
+    T: PartialOrd + PartialEq + Display + Debug,
+{
+    v: Vec<T>,
 }
-
-impl I32Median {
-    pub fn string(&self) -> String {
-        match self {
-            I32Median::I32(i) => format!("{}", *i),
-            I32Median::F64(i) => format!("{}", *i),
-            I32Median::None => format!("none"),
-        }
+impl<T> Debug for SortedVec<T>
+where
+    T: PartialOrd + PartialEq + Display + Debug,
+{
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let s = format!("{:?}", self.v);
+        f.write_str(&s)
     }
 }
 
-struct SortedI32Slice {
-    v: Vec<i32>,
-}
-
-impl SortedI32Slice {
-    fn new() -> Self {
+impl<T> SortedVec<T>
+where
+    T: PartialOrd + PartialEq + Display + Debug,
+{
+    pub fn new() -> Self {
         Self { v: Vec::new() }
     }
 
-    fn push(&mut self, i: i32) {
+    pub fn from_vec(v: Vec<T>) -> Self {
+        let mut obj = Self::new();
+        for i in v {
+            obj.push(i);
+        }
+        return obj;
+    }
+
+    pub fn push(&mut self, i: T) {
         if self.v.len() == 0 {
             self.v.push(i);
             return;
         }
-        let index = self.binary_search(i, 0, self.v.len() - 1);
+        let index = self.binary_search(&i, 0, self.v.len() - 1);
         self.v.insert(index, i);
     }
 
-    fn median(&self) -> I32Median {
+    pub fn median(&self) -> Option<&T> {
         let length = self.v.len();
         if length == 0 {
-            return I32Median::None;
+            return None;
         }
-        if length % 2 == 1 {
-            return I32Median::I32(self.v[length / 2]);
-        }
-        let v = (self.v[length / 2] + self.v[length / 2 - 1]) as f64;
-        return I32Median::F64(v / 2.0);
+        return Some(&self.v[length / 2]);
     }
 
-    fn binary_search(&self, i: i32, l: usize, r: usize) -> usize {
-        if l == r {
-            if self.v[l] >= i {
+    fn binary_search(&self, i: &T, l: usize, r: usize) -> usize {
+        if l >= r {
+            if l > r || self.v[l] >= *i {
                 return l;
             }
             return l + 1;
@@ -64,10 +61,10 @@ impl SortedI32Slice {
             mid += 1;
         }
         let mid = mid;
-        if self.v[mid] == i {
+        if self.v[mid] == *i {
             return mid;
         }
-        if self.v[mid] > i {
+        if self.v[mid] > *i {
             return self.binary_search(i, l, mid - 1);
         }
         return self.binary_search(i, mid + 1, r);
