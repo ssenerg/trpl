@@ -1,4 +1,4 @@
-![Rust Logo](trpl.png)
+![Rust Logo](assets/images/trpl.webp)
 
 ---
 
