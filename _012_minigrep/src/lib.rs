@@ -23,7 +23,7 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn load() -> Result<Self, Box<dyn Error>> {
+    pub fn load2() -> Result<Self, Box<dyn Error>> {
         let args: Vec<String> = env::args().collect();
         if args.len() != 3 {
             return Err(Box::new(IError::new(
@@ -33,6 +33,34 @@ impl Config {
         }
         let query = args[1].clone();
         let file_path = args[2].clone();
+        let ignore_case = env::var("IGNORE_CASE").or_else(|error| match error {
+            env::VarError::NotPresent => Ok(String::from("0")),
+            error => Err(error),
+        })?;
+        let ignore_case = if &ignore_case == "1" { true } else { false };
+        return Ok(Self {
+            query,
+            file_path,
+            ignore_case,
+        });
+    }
+
+    pub fn load(mut args: impl Iterator<Item = String>) -> Result<Self, Box<dyn Error>> {
+        args.next();
+        let query = match args.next() {
+            Some(arg) => Ok(arg),
+            None => Err(Box::new(IError::new(
+                ErrorKind::InvalidInput,
+                String::from("query and file path must be specified"),
+            ))),
+        }?;
+        let file_path = match args.next() {
+            Some(arg) => Ok(arg),
+            None => Err(Box::new(IError::new(
+                ErrorKind::InvalidInput,
+                String::from("file path must be specified"),
+            ))),
+        }?;
         let ignore_case = env::var("IGNORE_CASE").or_else(|error| match error {
             env::VarError::NotPresent => Ok(String::from("0")),
             error => Err(error),
@@ -55,13 +83,10 @@ impl Config {
 }
 
 fn search_case_sensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    let mut res = Vec::new();
-    for line in contents.lines() {
-        if line.contains(query) {
-            res.push(line);
-        }
-    }
-    res
+    contents
+        .lines()
+        .filter(|line| line.contains(query))
+        .collect()
 }
 
 fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
