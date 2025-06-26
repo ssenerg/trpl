@@ -1,5 +1,5 @@
 use std::collections::HashMap;
-use std::time::{Instant, Duration};
+use std::time::{Duration, Instant};
 
 pub enum FibCalculator {
     NonRecursice,

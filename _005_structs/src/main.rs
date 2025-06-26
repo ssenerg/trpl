@@ -1,10 +1,7 @@
 fn main() {
-    let user = User::build_user(
-        String::from("SEXY LADY"), 
-        String::from("sxy@ldy.com"),
-    );
+    let user = User::build_user(String::from("SEXY LADY"), String::from("sxy@ldy.com"));
     let ok = user.sign_in_count_valid();
-    println!("{user:#?}\n\n{ok}"); 
+    println!("{user:#?}\n\n{ok}");
 }
 
 #[derive(Debug)]
@@ -28,4 +25,3 @@ impl User {
         }
     }
 }
-

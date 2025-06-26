@@ -75,4 +75,3 @@ enum SpreadsheetCell {
     Float(f64),
     Text(String),
 }
-

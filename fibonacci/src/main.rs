@@ -3,7 +3,7 @@ use fibonacci::*;
 fn main() {
     let n = 185;
     let bench_count = 100000;
-    
+
     let dur = benchmark(n, FibCalculator::NonRecursice, bench_count);
     println!("NonRecursice took {dur:?}");
 

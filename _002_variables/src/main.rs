@@ -1,7 +1,7 @@
 fn main() {
-    let mut s = String::from("JEEZEZ");
-    let _a  = (&s, &s);
-    let arr = [&s, &s, &s];
+    let s = String::from("JEEZEZ");
+    let _a = (&s, &s);
+    let _arr = [&s, &s, &s];
 }
 
 fn _loop_label() {
@@ -25,7 +25,6 @@ fn _loop_label() {
     }
     println!("End count = {count}");
 }
-
 
 fn _nth_fibonacci(n: u32) -> u128 {
     if n == 1 || n == 0 {

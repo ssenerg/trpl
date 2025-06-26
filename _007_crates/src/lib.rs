@@ -1,9 +1,11 @@
+#[allow(dead_code)]
 struct Sth {}
 
+#[allow(dead_code)]
 mod flower {
     pub struct Flower {}
     fn sth() -> super::Sth {
-        super::Sth{}
+        super::Sth {}
     }
 }
 mod garden;
@@ -12,7 +14,9 @@ mod front_of_house {
     pub mod hosting {
         fn add_to_wait_list_pr() {}
         pub fn add_to_wait_list_pub() {
-            let _ = super::Private{field: String::new()};
+            let _ = super::Private {
+                field: String::new(),
+            };
             add_to_wait_list_pr();
         }
 
@@ -23,6 +27,8 @@ mod front_of_house {
             }
         }
     }
+
+    #[allow(dead_code)]
     struct Private {
         field: String,
     }
@@ -33,14 +39,14 @@ pub mod a_test {
     #[derive(Debug)]
     pub struct Jeezez {
         pub field: String,
-        booled: bool,
+        _booled: bool,
     }
 
     impl Jeezez {
         pub fn new() -> Self {
             Self {
                 field: String::new(),
-                booled: false,
+                _booled: false,
             }
         }
     }
@@ -48,7 +54,7 @@ pub mod a_test {
     pub fn sutun() -> Jeezez {
         Jeezez {
             field: String::from("damn girl"),
-            booled: true,
+            _booled: true,
         }
     }
 }

@@ -22,6 +22,7 @@ impl Shoes for Vec<Shoe> {
     }
 }
 
+#[cfg(test)]
 mod tests {
     use super::*;
 

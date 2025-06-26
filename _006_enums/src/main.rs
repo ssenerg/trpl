@@ -18,8 +18,8 @@ fn main() {
         other => other,
     };
     println!("{rolled}");
-    
-    let value: Option<i32> = Some(4);
+
+    let _value: Option<i32> = Some(4);
     let value: Option<i32> = None;
     if let Some(val) = value {
         println!("value is : {val}")
@@ -28,7 +28,7 @@ fn main() {
     }
 }
 
-enum Message {
+pub enum Message {
     Quit,
     Move { x: i32, y: i32 },
     Write(String),
@@ -39,14 +39,12 @@ impl Message {
     fn call(&self) -> i32 {
         match self {
             Message::Quit => 0,
-            Message::Move { y: 2, .. } => 1,
+            Message::Move { y: 2, x } => *x,
             Message::Move {
-                y: i32::MIN..=1,
-                ..
+                y: i32::MIN..=1, ..
             } => 11,
             Message::Move {
-                y: 2..=i32::MAX,
-                ..
+                y: 2..=i32::MAX, ..
             } => 12,
             Message::Write(..) => 2,
             Message::ChangeColor(..) => 3,
