@@ -12,7 +12,7 @@ members = [
     "_011_automated_tests", 
     "_012_minigrep", 
     "_013_iterators_closures", 
-    "_014_cargo", "_014_cargo_add_one", "_015_smart_pointers", "_016_concurrency", 
+    "_014_cargo", "_014_cargo_add_one", "_015_smart_pointers", "_016_concurrency", "_017_oop", 
     "fibonacci", 
     "sorted_vec",
 
