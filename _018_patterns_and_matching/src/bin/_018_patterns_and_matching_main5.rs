@@ -38,7 +38,6 @@ fn combining() {
     }
 }
 
-
 enum Message {
     Hello { id: i32 },
 }

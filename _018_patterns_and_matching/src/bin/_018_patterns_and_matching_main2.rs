@@ -14,7 +14,6 @@ fn main() {
     fun5();
 }
 
-
 fn fun1() {
     let mut stack = Vec::new();
     stack.push(1);
@@ -65,14 +64,12 @@ fn multiple_pattern(x: i32) {
     }
 }
 
-
 fn range_pattern(x: f64) {
     match x {
         1.0..5.0 => println!("one through five"),
         _ => println!("something else"),
     }
 }
-
 
 fn range_even_ascii(x: char) {
     match x {
@@ -96,7 +93,6 @@ fn jeezez_structs() {
     assert_eq!(0, a);
     assert_eq!(7, b);
 }
-
 
 fn fun4() {
     let p = Point { x: 0, y: 7 };
@@ -123,26 +119,21 @@ fn previously_on_book() {
 
     match msg {
         Message::Quit => {
-            println!(
-                "The Quit variant has no data to destructure."
-            );
+            println!("The Quit variant has no data to destructure.");
         }
         Message::Move { x, y } => {
-            println!(
-                "Move in the x dir {x}, in the y dir {y}"
-            );
+            println!("Move in the x dir {x}, in the y dir {y}");
         }
         Message::Write(text) => {
             println!("Text message: {text}");
         }
-        Message::ChangeColor(r, g, b) => println!(
-            "Change color to red {r}, green {g}, and blue {b}"
-        ),
+        Message::ChangeColor(r, g, b) => {
+            println!("Change color to red {r}, green {g}, and blue {b}")
+        }
     }
 }
 
 fn fun5() {
-    let ((feet, inches), Point { x, y }) = 
-    ((3, 10), Point { x: 3, y: -10 });
+    let ((feet, inches), Point { x, y }) = ((3, 10), Point { x: 3, y: -10 });
     (_, _, _, _) = (feet, inches, x, y)
 }

@@ -25,9 +25,7 @@ fn color(age: String, is_tuesday: bool, favorite_color: Option<&str>) -> String 
     let age: Result<u8, _> = age.parse();
 
     if let Some(color) = favorite_color {
-        return format!(
-            "Using your favorite, {color}, as the background"
-        );
+        return format!("Using your favorite, {color}, as the background");
     } else if is_tuesday {
         return format!("Tuesday is green day!");
     } else if let Ok(age) = age {

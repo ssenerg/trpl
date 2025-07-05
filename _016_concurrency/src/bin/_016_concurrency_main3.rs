@@ -1,4 +1,4 @@
-use std::sync::{Mutex, Arc};
+use std::sync::{Arc, Mutex};
 use std::thread;
 
 fn main() {
@@ -11,7 +11,6 @@ fn main() {
     } // unlock
 
     println!("m = {:?}", m); // deref called
-
 
     let counter = Arc::new(Mutex::new(0));
     let mut handles = vec![];

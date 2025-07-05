@@ -9,9 +9,10 @@ fn main() {
         // Spawn 100 threads
         for _ in 0..10_000 {
             let counter = Arc::clone(&counter);
-                              // #############
-            s.spawn(move || { // ### IMPORTANT
-                              // ############# 
+            // #############
+            s.spawn(move || {
+                // ### IMPORTANT
+                // #############
                 let mut num = counter.lock().unwrap();
                 *num += 1;
             });

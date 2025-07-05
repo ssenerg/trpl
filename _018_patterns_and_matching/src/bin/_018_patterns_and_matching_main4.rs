@@ -8,7 +8,7 @@ fn main() {
 fn khesus_nested_() {
     let mut setting_value = Some(5);
     let new_setting_value = Some(10);
-    
+
     match (setting_value, new_setting_value) {
         (Some(_), Some(_)) => {
             println!("Can't overwrite an existing customized value");
@@ -30,7 +30,6 @@ fn some() {
     }
 }
 
-
 #[allow(dead_code)]
 struct Point {
     x: i32,
@@ -38,7 +37,8 @@ struct Point {
     z: i32,
 }
 
-fn remaining_part_with_dot_dot() { // IMPORTANT
+fn remaining_part_with_dot_dot() {
+    // IMPORTANT
     let origin = Point { x: 0, y: 0, z: 0 };
     match origin {
         Point { x, .. } => println!("x is {x}"),
