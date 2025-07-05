@@ -3,77 +3,77 @@
 version = 4
 
 [[package]]
-name = "_001_guessing_game"
+name = "_01_guessing_game"
 version = "0.1.0"
 
 [[package]]
-name = "_002_variables"
+name = "_02_variables"
 version = "0.1.0"
 
 [[package]]
-name = "_005_structs"
+name = "_05_structs"
 version = "0.1.0"
 
 [[package]]
-name = "_006_enums"
+name = "_06_enums"
 version = "0.1.0"
 
 [[package]]
-name = "_007_crates"
+name = "_07_crates"
 version = "0.1.0"
 
 [[package]]
-name = "_008_collections"
+name = "_08_collections"
 version = "0.1.0"
 
 [[package]]
-name = "_009_error_handling"
+name = "_09_error_handling"
 version = "0.1.0"
 
 [[package]]
-name = "_010_generics_traits_lifetimes"
+name = "_10_generics_traits_lifetimes"
 version = "0.1.0"
 
 [[package]]
-name = "_011_automated_tests"
+name = "_11_automated_tests"
 version = "0.1.0"
 
 [[package]]
-name = "_012_minigrep"
+name = "_12_minigrep"
 version = "0.1.0"
 
 [[package]]
-name = "_013_iterators_closures"
+name = "_13_iterators_closures"
 version = "0.1.0"
 dependencies = [
  "num-traits",
 ]
 
 [[package]]
-name = "_014_cargo"
+name = "_14_cargo"
 version = "0.1.0"
 dependencies = [
- "_014_cargo_add_one",
+ "_14_cargo_add_one",
 ]
 
 [[package]]
-name = "_014_cargo_add_one"
+name = "_14_cargo_add_one"
 version = "0.1.0"
 
 [[package]]
-name = "_015_smart_pointers"
+name = "_15_smart_pointers"
 version = "0.1.0"
 
 [[package]]
-name = "_016_concurrency"
+name = "_16_concurrency"
 version = "0.1.0"
 
 [[package]]
-name = "_017_oop"
+name = "_17_oop"
 version = "0.1.0"
 
 [[package]]
-name = "_018_patterns_and_matching"
+name = "_18_patterns_and_matching"
 version = "0.1.0"
 
 [[package]]

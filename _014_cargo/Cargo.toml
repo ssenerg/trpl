@@ -1,9 +1,0 @@
-[package]
-name = "_014_cargo"
-version = "0.1.0"
-edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
-_014_cargo_add_one = { path = "../_014_cargo_add_one" }
