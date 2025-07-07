@@ -1,6 +1,6 @@
 // Note that Summary is used once; its because we have to import traits too
 use _10_generics_traits_lifetimes::{
-    longest, notify2, FirstWord, ImportantExcerpt, NewsArticle, Pair, Summary, Tweet,
+    FirstWord, ImportantExcerpt, NewsArticle, Pair, Summary, Tweet, longest, notify2,
 };
 
 fn main() {
